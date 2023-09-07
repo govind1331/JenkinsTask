@@ -65,15 +65,7 @@ pipeline {
        
     }
 
-   stage('Complete') { //production deployment
-             
-             steps{
-                 echo "Completed build!"
-               
-             }
        
-    }
-        
     
    
     
