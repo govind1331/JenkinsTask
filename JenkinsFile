@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+    //environment variables
+    environment{
+        DIRECTORY_PATH="/directory_path_code_directory"
+        TESTING_ENVIRONMENT = "Test Env"
+        PRODUCTION_ENVIRONMENT = "Prod Env"
+    }
+
+    //stages for the pipeline
+    stages{
+         stage('Build') {  //for creating the build
+             
+             steps{
+                 echo "fetch the source code from the directory path specified by the environment variable"
+                 echo "compile the code and generate any necessary artifacts"
+             }
+       
+    }
+    
+     stage('Test') { // for running tests
+             
+             steps{
+                 echo "unit tests"
+                 echo "integration tests"
+             }
+       
+    }
+    
+    
+     stage('Code Quality Check') { //for checking the quality of the code
+             
+             steps{
+                 echo "check the quality of the code"
+             }
+       
+    }
+    
+     stage('Deploy') { //Deployment into test environment for further tests by QA
+             
+             steps{
+                 echo "deploy the application to a testing environment specified by the environment variable"
+                 echo "test environment: ${TESTING_ENVIRONMENT}"
+             }
+       
+    }
+        
+    
+    
+      stage('Approval') {  //Build approval stage for production deployment
+             
+             steps{
+                sleep 10
+                echo "Build approved for production"
+             }
+       
+    }
+
+    stage('Deploy to production') { //production deployment
+             
+             steps{
+                 echo "Deploying to production environment: ${PRODUCTION_ENVIRONMENT}"
+                 echo "Deployed to production!"
+             }
+       
+    }
+        
+    
+   
+    
+}
+}
