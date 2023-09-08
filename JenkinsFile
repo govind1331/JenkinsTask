@@ -65,17 +65,18 @@ pipeline {
        
     }
 
-   
+    
+    }
 
-post{
+    post{
         success{
+
                 mail to: "govind911m@gmail.com"
                 subject: "Build Results"
                 body: "Build was successful"
 
-}
-}
 
-    
-}
+                }
+    }
+
 }
