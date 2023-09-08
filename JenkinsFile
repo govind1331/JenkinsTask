@@ -65,18 +65,17 @@ pipeline {
        
     }
 
-    stage('final stage') { //production deployment
-             
-             steps{
-                 echo "Fully deployed"
-              
-             }
-       
-    }
-
-       
-    
    
+
+post{
+        success{
+                mail to: "govind911m@gmail.com"
+                subject: "Build Results"
+                body: "Build was successful"
+
+}
+}
+
     
 }
 }
