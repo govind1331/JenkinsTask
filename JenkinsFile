@@ -19,13 +19,13 @@ pipeline {
     }
     
      stage('Unit and Integration Tests') { // for running tests
-             
-            try{
              steps{
              
+            try{
+            
                  echo "unit tests"
                  echo "integration tests"
-                }
+                
                 currentBuild.result = 'SUCCESS'
              }catch(err)
                 {
@@ -38,6 +38,7 @@ pipeline {
                 attachLog: true
             )
                 }
+             }
     }
              
        
@@ -55,14 +56,13 @@ pipeline {
 
      stage('Security scan') { //for checking the quality of the code
              
+            steps{
             try{
-             steps{
+            
              
                  echo "Security scan using OWASP Dependency-Check plugin for checking project dependencies for vulnerabilities"
-             }
-                 currentBuild.result = 'SUCCESS'
-                
-                }catch(err)
+                currentBuild.result = 'SUCCESS'
+             }catch(err)
                 {
                  currentBuild.result = 'FAILURE'
                 }finally{
@@ -75,7 +75,7 @@ pipeline {
                 }
              }
        
-    
+     }
     
      stage('Deploy') { //Deployment into staging environment
              
